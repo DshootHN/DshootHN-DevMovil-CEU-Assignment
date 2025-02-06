@@ -10,21 +10,39 @@ import { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function TabTwoScreen() {
+  const [count, setCount] = useState(0);
 
+  const handlePress = () => {
+
+    setCount(prevCount => {
+      const newCount = prevCount + 1;
+
+      if (newCount % 5 === 0) {
+        Alert.alert("Información", `El número ${newCount} es múltiplo de cinco`);
+      }
+
+      return newCount;
+    });
+
+  };
+
+  useEffect(() => {
+    console.log(`El contador cambió: ${count}`);
+
+    if (count !== 0 && count % 5 === 0) {
+      console.log(`El número ${count} es múltiplo de cinco`);
+    }
+  }, [count]);
+  
   return (
     <View style={styles.container}>
-                <TouchableOpacity>
-          <Image 
-            source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/CEUTEC_HONDURAS.png' }} // Cambia por la URL de tu imagen
-            style={styles.image}
-            resizeMode='contain'
-          />
-          </TouchableOpacity>
       <View style={styles.header}>
-          <Ionicons style={styles.headerIcon} name="code-working" size={32} color="#fff" />
-          <Text style={styles.headerTextTime}>Tarea # 1</Text>
-          <Text style={styles.headerText}>Programacion Móvil</Text>
-          <Text style={styles.headerText}>Denis Dávila - 32051192</Text>
+          <Ionicons style={styles.headerIcon} name="keypad" size={32} color="#fff" />
+          <Text style={styles.headerText}>Contador de Clicks</Text>
+          <Text style={styles.headerText}>{count}</Text>
+          <TouchableOpacity style={styles.button} onPress={handlePress}>
+            <Text style={{ color: '#000', fontWeight: 'bold' }}>¡ CLICK !</Text>
+          </TouchableOpacity>
       </View>
     </View>
   );
@@ -51,20 +69,18 @@ const styles = StyleSheet.create({
   },
   headerText: {
       color: "#fff",
-      fontSize: 25,
+      fontSize: 18,
       fontWeight: 'bold',
       marginBottom: 10
   },
-  headerTextTime: {
-    color: "#FFD700",
-    fontSize: 40,
-    fontWeight: 'bold',
-    marginBottom: 10
-  },
-  image: {
-    width: 400, 
-    height: 200,
-    borderRadius: 100, 
+  headerInputText: {
+      width: '100%',
+      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+      color: "#fff",
+      fontSize: 16,
+      padding: 10,
+      borderRadius: 8,
+      marginBottom: 10,
   },
   button: {
     marginTop: 10,
