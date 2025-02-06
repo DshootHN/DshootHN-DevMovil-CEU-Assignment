@@ -22,7 +22,7 @@ export default function TabTwoScreen() {
           </TouchableOpacity>
       <View style={styles.header}>
           <Ionicons style={styles.headerIcon} name="code-working" size={32} color="#fff" />
-          <Text style={styles.headerTextTime}>Tarea # 1</Text>
+          <Text style={styles.headerTextTime}>Tarea # 2</Text>
           <Text style={styles.headerText}>Programacion Móvil</Text>
           <Text style={styles.headerText}>Denis Dávila - 32051192</Text>
       </View>
